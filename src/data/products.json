@@ -1,0 +1,202 @@
+[
+  {
+    "id": 1,
+    "name": "Wireless Headphones",
+    "category": "Electronics",
+    "price": 79.99,
+    "rating": 4.5,
+    "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&auto=format&fit=crop",
+    "description": "Premium wireless headphones with noise cancellation",
+    "stock": 10
+  },
+  {
+    "id": 2,
+    "name": "Smart Watch",
+    "category": "Electronics",
+    "price": 199.99,
+    "rating": 4.8,
+    "image": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&auto=format&fit=crop",
+    "description": "Fitness tracking smartwatch with heart rate monitor",
+    "stock": 5
+  },
+  {
+    "id": 3,
+    "name": "Running Shoes",
+    "category": "Fashion",
+    "price": 89.99,
+    "rating": 4.3,
+    "image": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&auto=format&fit=crop",
+    "description": "Comfortable running shoes for daily workouts",
+    "stock": 8
+  },
+  {
+    "id": 4,
+    "name": "Laptop Backpack",
+    "category": "Accessories",
+    "price": 49.99,
+    "rating": 4.6,
+    "image": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&auto=format&fit=crop",
+    "description": "Durable laptop backpack with multiple compartments",
+    "stock": 15
+  },
+  {
+    "id": 5,
+    "name": "Coffee Maker",
+    "category": "Home",
+    "price": 129.99,
+    "rating": 4.7,
+    "image": "https://images.unsplash.com/photo-1517668808822-9ebb02f2a0e6?w=400&auto=format&fit=crop",
+    "description": "Automatic coffee maker with programmable timer",
+    "stock": 3
+  },
+  {
+    "id": 6,
+    "name": "Yoga Mat",
+    "category": "Sports",
+    "price": 29.99,
+    "rating": 4.4,
+    "image": "https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?w=400&auto=format&fit=crop",
+    "description": "Non-slip yoga mat for home workouts",
+    "stock": 20
+  },
+  {
+    "id": 7,
+    "name": "Bluetooth Speaker",
+    "category": "Electronics",
+    "price": 59.99,
+    "rating": 4.2,
+    "image": "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=400&auto=format&fit=crop",
+    "description": "Portable Bluetooth speaker with 12-hour battery",
+    "stock": 12
+  },
+  {
+    "id": 8,
+    "name": "Sunglasses",
+    "category": "Fashion",
+    "price": 39.99,
+    "rating": 4.1,
+    "image": "https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=400&auto=format&fit=crop",
+    "description": "UV protection sunglasses with polarized lenses",
+    "stock": 25
+  },
+  {
+    "id": 9,
+    "name": "Water Bottle",
+    "category": "Sports",
+    "price": 19.99,
+    "rating": 4.9,
+    "image": "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=400&auto=format&fit=crop",
+    "description": "Insulated stainless steel water bottle",
+    "stock": 30
+  },
+  {
+    "id": 10,
+    "name": "Desk Lamp",
+    "category": "Home",
+    "price": 34.99,
+    "rating": 4.5,
+    "image": "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=400&auto=format&fit=crop",
+    "description": "LED desk lamp with adjustable brightness",
+    "stock": 18
+  },
+  {
+    "id": 11,
+    "name": "Gaming Mouse",
+    "category": "Electronics",
+    "price": 69.99,
+    "rating": 4.6,
+    "image": "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=400&auto=format&fit=crop",
+    "description": "RGB gaming mouse with programmable buttons",
+    "stock": 7
+  },
+  {
+    "id": 12,
+    "name": "Leather Wallet",
+    "category": "Accessories",
+    "price": 44.99,
+    "rating": 4.3,
+    "image": "https://images.unsplash.com/photo-1627123424574-724758594e93?w=400&auto=format&fit=crop",
+    "description": "Genuine leather wallet with RFID protection",
+    "stock": 22
+  },
+  {
+    "id": 13,
+    "name": "Wireless Earbuds",
+    "category": "Electronics",
+    "price": 99.99,
+    "rating": 4.7,
+    "image": "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=400&auto=format&fit=crop",
+    "description": "True wireless earbuds with charging case",
+    "stock": 14
+  },
+  {
+    "id": 14,
+    "name": "Phone Case",
+    "category": "Accessories",
+    "price": 24.99,
+    "rating": 4.4,
+    "image": "https://images.unsplash.com/photo-1556656793-08538906a9f8?w=400&auto=format&fit=crop",
+    "description": "Protective phone case with drop protection",
+    "stock": 35
+  },
+  {
+    "id": 15,
+    "name": "Fitness Tracker",
+    "category": "Sports",
+    "price": 79.99,
+    "rating": 4.5,
+    "image": "https://images.unsplash.com/photo-1575311373937-040b8e1fd5b6?w=400&auto=format&fit=crop",
+    "description": "Activity tracker with sleep monitoring",
+    "stock": 11
+  },
+  {
+    "id": 16,
+    "name": "Ceramic Mug",
+    "category": "Home",
+    "price": 16.99,
+    "rating": 4.8,
+    "image": "https://images.unsplash.com/photo-1572119865084-43c285814d63?w=400&auto=format&fit=crop",
+    "description": "Handcrafted ceramic coffee mug",
+    "stock": 40
+  },
+  {
+    "id": 17,
+    "name": "Wireless Charger",
+    "category": "Electronics",
+    "price": 29.99,
+    "rating": 4.3,
+    "image": "https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=400&auto=format&fit=crop",
+    "description": "Fast wireless charging pad for smartphones",
+    "stock": 16
+  },
+  {
+    "id": 18,
+    "name": "Canvas Tote Bag",
+    "category": "Fashion",
+    "price": 18.99,
+    "rating": 4.6,
+    "image": "https://images.unsplash.com/photo-1597484661643-2f5fef640dd1?w=400&auto=format&fit=crop",
+    "description": "Eco-friendly canvas tote bag",
+    "stock": 28
+  },
+  {
+    "id": 19,
+    "name": "Protein Shaker",
+    "category": "Sports",
+    "price": 12.99,
+    "rating": 4.2,
+    "image": "https://images.unsplash.com/photo-1593095948071-474c5cc2989d?w=400&auto=format&fit=crop",
+    "description": "BPA-free protein shaker with mixing ball",
+    "stock": 33
+  },
+  {
+    "id": 20,
+    "name": "Essential Oil Diffuser",
+    "category": "Home",
+    "price": 45.99,
+    "rating": 4.7,
+    "image": "https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=400&auto=format&fit=crop",
+    "description": "Ultrasonic aromatherapy diffuser",
+    "stock": 9
+  }
+]
