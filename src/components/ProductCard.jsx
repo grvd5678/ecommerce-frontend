@@ -2,6 +2,7 @@ import { memo } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useCart } from "../context/useCart";
+import { getImageUrl } from "../utils/imageUtils";
 
 const ProductCard = memo(({ product }) => {
   const { addToCart } = useCart();
@@ -14,7 +15,7 @@ const ProductCard = memo(({ product }) => {
         onClick={() => navigate(`/product/${product.id}`)}
       >
         <img
-          src={product.image || "/product_placeholder.jpg"}
+          src={getImageUrl(product.image)}
           alt={product.name}
           className="w-full h-full object-cover"
           loading="lazy"

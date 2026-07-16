@@ -1,5 +1,6 @@
 import { useCart } from '../context/useCart';
 import { motion } from 'framer-motion';
+import { getImageUrl } from '../utils/imageUtils';
 
 const CartItem = ({ item }) => {
   const { updateQuantity, removeFromCart } = useCart();
@@ -10,9 +11,13 @@ const CartItem = ({ item }) => {
   return (
     <div className="flex items-center gap-4 bg-white/80 backdrop-blur-lg p-4 rounded-xl shadow-sm border border-slate-200/60">
       <img
-        src={item.image}
+        src={getImageUrl(item.image)}
         alt={item.name}
         className="w-24 h-24 object-cover rounded-lg bg-slate-50"
+        onError={(e) => {
+          e.target.onerror = null;
+          e.target.src = "/product_placeholder.jpg";
+        }}
       />
       <div className="flex-1">
         <h3 className="font-semibold text-slate-900">{item.name}</h3>

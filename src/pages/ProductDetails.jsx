@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import ReviewSummary from '../components/ReviewSummary';
 import api from '../utils/api';
-import { useCart } from '../context/useCart';
+import { getImageUrl } from '../utils/imageUtils';
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -35,11 +35,15 @@ const ProductDetails = () => {
         {/* Left: Image Gallery */}
         <div className="space-y-4">
           <motion.div className="aspect-square bg-slate-100 rounded-2xl overflow-hidden">
-            {product.image ? (
-              <img src={product.image} alt={product.name} className="w-full h-full object-cover" />
-            ) : (
-              <div className="w-full h-full flex items-center justify-center text-slate-400">No Image</div>
-            )}
+            <img 
+              src={getImageUrl(product.image)} 
+              alt={product.name} 
+              className="w-full h-full object-cover" 
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = "/product_placeholder.jpg";
+              }}
+            />
           </motion.div>
         </div>
 

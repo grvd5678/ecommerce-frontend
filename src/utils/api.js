@@ -1,8 +1,10 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
+export const baseURL = (import.meta.env.VITE_API_URL || 'http://localhost:5000');
+
 const api = axios.create({
-  baseURL: (import.meta.env.VITE_API_URL || 'http://localhost:5000') + '/api'
+  baseURL: baseURL
 });
 
 // Attach token to every request automatically
