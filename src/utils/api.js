@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-// Use the URL from env, and force-append /api
-const apiBase = (import.meta.env.VITE_API_URL || 'http://localhost:5000');
-export const baseURL = apiBase.endsWith('/api') ? apiBase : `${apiBase}/api`;
+// Hardcoded production URL for reliability
+const prodURL = 'https://ecommerce-api-tio6.onrender.com/api';
+export const baseURL = (import.meta.env.VITE_API_URL || prodURL);
 
 const api = axios.create({
   baseURL: baseURL
