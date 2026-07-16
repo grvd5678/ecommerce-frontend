@@ -1,9 +1,8 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-// Hardcoded production URL for reliability
-const prodURL = 'https://ecommerce-api-tio6.onrender.com/api';
-export const baseURL = (import.meta.env.VITE_API_URL || prodURL);
+// Force production URL
+export const baseURL = 'https://ecommerce-api-tio6.onrender.com/api';
 
 const api = axios.create({
   baseURL: baseURL
