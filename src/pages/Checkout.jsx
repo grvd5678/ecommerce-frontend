@@ -5,6 +5,15 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Navigate, useNavigate } from 'react-router-dom';
 import api from '../utils/api';
 
+const LABELS = {
+  billingInfo: 'Billing Information',
+  paymentMethod: 'Payment Method',
+  address: 'Address',
+  fullName: 'Full Name',
+  email: 'Email',
+  phone: 'Phone',
+};
+
 const RAZORPAY_KEY = import.meta.env.VITE_RAZORPAY_KEY_ID;
 
 const pageTransition = {
@@ -153,12 +162,12 @@ const Checkout = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Billing Form */}
           <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-            <h2 className="text-2xl font-bold mb-4">Billing Information</h2>
+            <h2 className="text-2xl font-bold mb-4">{LABELS.billingInfo}</h2>
             <form onSubmit={handleSubmit} className="space-y-4">
               {[
-                { key: 'name', label: 'Full Name', type: 'text' },
-                { key: 'email', label: 'Email', type: 'email' },
-                { key: 'phone', label: 'Phone', type: 'text' },
+                { key: 'name', label: LABELS.fullName, type: 'text' },
+                { key: 'email', label: LABELS.email, type: 'email' },
+                { key: 'phone', label: LABELS.phone, type: 'text' },
               ].map(({ key, label, type }) => (
                 <div key={key}>
                   <label className="block text-sm font-medium text-slate-700 mb-1">{label}</label>
@@ -172,7 +181,7 @@ const Checkout = () => {
                 </div>
               ))}
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-1">Address</label>
+                <label className="block text-sm font-medium text-slate-700 mb-1">{LABELS.address}</label>
                 <textarea
                   value={form.address}
                   onChange={e => setForm({ ...form, address: e.target.value })}
@@ -184,7 +193,7 @@ const Checkout = () => {
 
               {/* Payment Method */}
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">Payment Method</label>
+                <label className="block text-sm font-medium text-slate-700 mb-2">{LABELS.paymentMethod}</label>
                 <div className="grid grid-cols-2 gap-3">
                   {[
                     { value: 'cod', label: '💵 Cash on Delivery' },

@@ -3,6 +3,32 @@ import { useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
 
+const LABELS = {
+  login: 'Login',
+  forgotPassword: 'Forgot Password',
+  resetPassword: 'Reset Password',
+  email: 'Email',
+  password: 'Password',
+  newPassword: 'New Password',
+  confirmNewPassword: 'Confirm New Password',
+  enterOtp: 'Enter OTP',
+  emailPlaceholder: 'your@email.com',
+  passwordPlaceholder: '••••••',
+  otpPlaceholder: '------',
+  minPasswordHint: 'Min 6 characters',
+  reEnterPassword: 'Re-enter new password',
+  forgotPasswordLink: 'Forgot Password?',
+  sendOtp: 'Send OTP',
+  sendingOtp: 'Sending OTP...',
+  loggingIn: 'Logging in...',
+  resetting: 'Resetting...',
+  resendOtp: 'Resend OTP',
+  backToLogin: '← Back to Login',
+  noAccount: "Don't have an account?",
+  register: 'Register',
+  enterEmailForOtp: 'Enter your email to receive an OTP',
+};
+
 const Login = () => {
   const [step, setStep] = useState('login'); // login | forgot | otp | reset
   const [email, setEmail] = useState('');
@@ -92,26 +118,26 @@ const Login = () => {
         {/* LOGIN STEP */}
         {step === 'login' && (
           <>
-            <h2 className="text-3xl font-bold text-slate-900 mb-6">Login</h2>
+            <h2 className="text-3xl font-bold text-slate-900 mb-6">{LABELS.login}</h2>
             {error && <p className="text-red-500 mb-4">{error}</p>}
             {message && <p className="text-green-500 mb-4">{message}</p>}
             <form onSubmit={handleLogin} className="space-y-4">
               <div>
-                <label className="block text-slate-700 mb-2">Email</label>
+                <label className="block text-slate-700 mb-2">{LABELS.email}</label>
                 <input
                   type="email" value={email}
                   onChange={e => setEmail(e.target.value)}
                   className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
-                  placeholder="your@email.com"
+                  placeholder={LABELS.emailPlaceholder}
                 />
               </div>
               <div>
-                <label className="block text-slate-700 mb-2">Password</label>
+                <label className="block text-slate-700 mb-2">{LABELS.password}</label>
                 <input
                   type="password" value={password}
                   onChange={e => setPassword(e.target.value)}
                   className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
-                  placeholder="••••••"
+                  placeholder={LABELS.passwordPlaceholder}
                 />
               </div>
               <div className="text-right">
@@ -120,18 +146,18 @@ const Login = () => {
                   onClick={() => { setStep('forgot'); setError(''); setMessage(''); }}
                   className="text-sm text-blue-600 hover:underline"
                 >
-                  Forgot Password?
+                  {LABELS.forgotPasswordLink}
                 </button>
               </div>
               <button
                 type="submit" disabled={loading}
                 className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 disabled:opacity-50"
               >
-                {loading ? 'Logging in...' : 'Login'}
+                {loading ? LABELS.loggingIn : LABELS.login}
               </button>
             </form>
             <p className="mt-4 text-center text-slate-600">
-              Don't have an account? <Link to="/register" className="text-blue-600">Register</Link>
+              {LABELS.noAccount} <Link to="/register" className="text-blue-600">{LABELS.register}</Link>
             </p>
           </>
         )}
@@ -139,28 +165,28 @@ const Login = () => {
         {/* FORGOT PASSWORD - ENTER EMAIL */}
         {step === 'forgot' && (
           <>
-            <h2 className="text-3xl font-bold text-slate-900 mb-2">Forgot Password</h2>
-            <p className="text-slate-500 mb-6 text-sm">Enter your email to receive an OTP</p>
+            <h2 className="text-3xl font-bold text-slate-900 mb-2">{LABELS.forgotPassword}</h2>
+            <p className="text-slate-500 mb-6 text-sm">{LABELS.enterEmailForOtp}</p>
             {error && <p className="text-red-500 mb-4">{error}</p>}
             <form onSubmit={handleForgotPassword} className="space-y-4">
               <div>
-                <label className="block text-slate-700 mb-2">Email</label>
+                <label className="block text-slate-700 mb-2">{LABELS.email}</label>
                 <input
                   type="email" value={email}
                   onChange={e => setEmail(e.target.value)}
                   className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
-                  placeholder="your@email.com"
+                  placeholder={LABELS.emailPlaceholder}
                 />
               </div>
               <button
                 type="submit" disabled={loading}
                 className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 disabled:opacity-50"
               >
-                {loading ? 'Sending OTP...' : 'Send OTP'}
+                {loading ? LABELS.sendingOtp : LABELS.sendOtp}
               </button>
             </form>
             <button onClick={() => { setStep('login'); setError(''); }} className="mt-4 w-full text-slate-500 text-sm hover:underline">
-              ← Back to Login
+              {LABELS.backToLogin}
             </button>
           </>
         )}
@@ -168,18 +194,18 @@ const Login = () => {
         {/* OTP + NEW PASSWORD */}
         {step === 'otp' && (
           <>
-            <h2 className="text-3xl font-bold text-slate-900 mb-2">Reset Password</h2>
+            <h2 className="text-3xl font-bold text-slate-900 mb-2">{LABELS.resetPassword}</h2>
             <p className="text-slate-500 mb-6 text-sm">OTP sent to <strong>{email}</strong></p>
             {error && <p className="text-red-500 mb-4">{error}</p>}
             {message && <p className="text-green-500 mb-4">{message}</p>}
             <form onSubmit={handleResetPassword} className="space-y-4">
               <div>
-                <label className="block text-slate-700 mb-2">Enter OTP</label>
+                <label className="block text-slate-700 mb-2">{LABELS.enterOtp}</label>
                 <input
                   type="text" value={otp} maxLength={6}
                   onChange={e => setOtp(e.target.value)}
                   className="w-full px-4 py-3 border rounded-lg text-center text-2xl tracking-widest focus:ring-2 focus:ring-blue-500 outline-none"
-                  placeholder="------"
+                  placeholder={LABELS.otpPlaceholder}
                 />
                 <div className="text-center mt-2">
                   {timer > 0 ? (
@@ -192,32 +218,32 @@ const Login = () => {
                 </div>
               </div>
               <div>
-                <label className="block text-slate-700 mb-2">New Password</label>
+                <label className="block text-slate-700 mb-2">{LABELS.newPassword}</label>
                 <input
                   type="password" value={newPassword}
                   onChange={e => setNewPassword(e.target.value)}
                   className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
-                  placeholder="Min 6 characters"
+                  placeholder={LABELS.minPasswordHint}
                 />
               </div>
               <div>
-                <label className="block text-slate-700 mb-2">Confirm New Password</label>
+                <label className="block text-slate-700 mb-2">{LABELS.confirmNewPassword}</label>
                 <input
                   type="password" value={confirmPassword}
                   onChange={e => setConfirmPassword(e.target.value)}
                   className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
-                  placeholder="Re-enter new password"
+                  placeholder={LABELS.reEnterPassword}
                 />
               </div>
               <button
                 type="submit" disabled={loading || timer === 0}
                 className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 disabled:opacity-50"
               >
-                {loading ? 'Resetting...' : 'Reset Password'}
+                {loading ? LABELS.resetting : LABELS.resetPassword}
               </button>
             </form>
             <button onClick={() => { setStep('login'); setError(''); }} className="mt-4 w-full text-slate-500 text-sm hover:underline">
-              ← Back to Login
+              {LABELS.backToLogin}
             </button>
           </>
         )}
