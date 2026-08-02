@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import ReviewSummary from '../components/ReviewSummary';
 import api from '../utils/api';
 import { getImageUrl } from '../utils/imageUtils';
+import { useCart } from '../context/useCart';
 
 const ProductDetails = () => {
   const { id } = useParams();
