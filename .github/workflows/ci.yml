@@ -1,0 +1,31 @@
+name: Frontend CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Node.js 20
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20
+        cache: npm
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Verify production build
+      run: npm run build
+      env:
+        VITE_API_URL: https://ecommerce-api-tio6.onrender.com/api
+        VITE_BACKEND_URL: https://ecommerce-api-tio6.onrender.com
+        VITE_RAZORPAY_KEY_ID: rzp_test_placeholder
