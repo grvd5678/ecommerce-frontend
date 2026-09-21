@@ -267,38 +267,40 @@ class ErrorBoundary extends Component {
 
 ---
 
+---
+
+## 🚀 Level 3: DevOps, CI/CD & Cloud Architecture
+
+### 1️⃣ GitHub Actions CI Automation
+- **Backend Workflow (`.github/workflows/ci.yml`):**
+  Runs `npm ci` on Node 20 and executes automated Jest integration tests against an in-memory MongoDB server on every pull request.
+- **Frontend Workflow (`.github/workflows/ci.yml`):**
+  Runs `npm ci` on Node 20 and verifies production compilation (`npm run build`) before merging to `main`.
+
+### 2️⃣ Multi-Stage Docker Containerization
+- **Backend (`Dockerfile`):**
+  Lightweight `node:20-alpine` production image running with least-privilege non-root `node` user.
+- **Frontend (`Dockerfile` & `nginx.conf`):**
+  Multi-stage build: Stage 1 builds the Vite bundle; Stage 2 serves the static assets via lightweight Nginx Alpine with client-side SPA routing fallback (`try_files $uri /index.html;`).
+- **Docker Compose (`docker-compose.yml`):**
+  1-command root spin up (`docker compose up --build`) connecting MongoDB 7, Backend API, and Frontend SPA on an isolated network bridge.
+
+### 3️⃣ Executive Recharts BI Analytics
+- Replaced raw table counters with interactive, animated Recharts (`AreaChart`, `PieChart`, `BarChart`).
+- Powered by high-efficiency MongoDB aggregation pipelines (`$facet`, `$group`, `$sort`), minimizing data transfer over the wire.
+
+---
+
 ## 💎 Key Takeaway
 
 **Engineering polish = Senior mindset**
 
 You now have:
-- ✅ Performance optimization
-- ✅ Clean architecture
-- ✅ Product thinking
-- ✅ Production readiness
+- ✅ Performance optimization (React.memo, useMemo, useCallback)
+- ✅ Clean architecture (Context API + useReducer)
+- ✅ Automated CI/CD pipelines (GitHub Actions)
+- ✅ Containerization & Orchestration (Docker & Docker Compose)
+- ✅ Production cloud reliability (Render + DNS resilience)
 
-**This is the level that gets you hired!** 🚀
+**You're now at full-stack production-grade polish!** 💎
 
----
-
-## 📈 Impact
-
-### For Recruiters
-- Shows performance awareness
-- Demonstrates architecture skills
-- Proves product thinking
-- Signals production experience
-
-### For Users
-- Faster perceived performance
-- Clearer feedback
-- Better error handling
-- Professional experience
-
-### For Codebase
-- Maintainable
-- Testable
-- Scalable
-- Production-ready
-
-**You're now at senior-level polish!** 💎
