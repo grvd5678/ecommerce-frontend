@@ -1,10 +1,15 @@
 export const cartReducer = (state, action) => {
   switch (action.type) {
+    case 'SET_CART': {
+      return Array.isArray(action.payload) ? action.payload : [];
+    }
+
     case 'ADD_TO_CART': {
-      const existingItem = state.find(item => item.id === action.payload.id);
+      const targetId = action.payload.id || action.payload._id;
+      const existingItem = state.find(item => (item.id || item._id) === targetId);
       if (existingItem) {
         return state.map(item =>
-          item.id === action.payload.id
+          (item.id || item._id) === targetId
             ? { ...item, quantity: item.quantity + 1 }
             : item
         );
@@ -13,11 +18,11 @@ export const cartReducer = (state, action) => {
     }
     
     case 'REMOVE_FROM_CART':
-      return state.filter(item => item.id !== action.payload);
+      return state.filter(item => (item.id || item._id) !== action.payload);
     
     case 'UPDATE_QUANTITY':
       return state.map(item =>
-        item.id === action.payload.id
+        (item.id || item._id) === action.payload.id
           ? { ...item, quantity: action.payload.quantity }
           : item
       );

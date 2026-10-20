@@ -1,9 +1,10 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useCart } from '../context/useCart';
 import CartItem from '../components/CartItem';
 import CouponInput from '../components/CouponInput';
+import GroupCartBanner from '../components/GroupCartBanner';
 
 const pageTransition = {
   initial: { opacity: 0, y: 20 },
@@ -13,8 +14,17 @@ const pageTransition = {
 };
 
 const Cart = () => {
-  const { cart, getCartTotal, getTax, getShipping, getGrandTotal } = useCart();
+  const { cart, getCartTotal, getTax, getShipping, getGrandTotal, groupRoomId, startGroupCart } = useCart();
   const [discount, setDiscount] = useState(0);
+  const [searchParams] = useSearchParams();
+
+  // Auto-join group room if "?room=XXXX" is present in URL
+  useEffect(() => {
+    const roomFromUrl = searchParams.get('room');
+    if (roomFromUrl && roomFromUrl !== groupRoomId) {
+      startGroupCart(roomFromUrl.toUpperCase());
+    }
+  }, [searchParams, groupRoomId, startGroupCart]);
 
   const subtotal = getCartTotal;
   const tax = getTax;
@@ -25,52 +35,38 @@ const Cart = () => {
   if (cart.length === 0) {
     return (
       <motion.div {...pageTransition}>
-        <div className="min-h-[70vh] flex items-center justify-center px-4">
-          <motion.div 
-            className="max-w-md w-full"
-            initial={{ opacity: 0, y: 20, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
-          >
-            <div className="bg-white/80 backdrop-blur-lg rounded-2xl shadow-sm p-12 border border-slate-200/60 text-center">
-              <motion.div 
-                className="text-7xl mb-6"
-                animate={{ y: [0, -15, 0] }}
-                transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
-              >
-                🛒
-              </motion.div>
-              <motion.h2 
-                className="text-3xl font-bold text-slate-900 mb-3"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
-              >
-                Your cart is empty
-              </motion.h2>
-              <motion.p 
-                className="text-slate-600 mb-8 text-lg"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
-              >
-                Looks like you haven't added anything yet
-              </motion.p>
-              <motion.div 
-                whileTap={{ scale: 0.98 }}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 }}
-              >
+        <div className="container mx-auto px-4 py-8 max-w-4xl">
+          <GroupCartBanner />
+          <div className="min-h-[50vh] flex items-center justify-center">
+            <motion.div 
+              className="max-w-md w-full"
+              initial={{ opacity: 0, y: 20, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+            >
+              <div className="bg-white/80 backdrop-blur-lg rounded-2xl shadow-sm p-12 border border-slate-200/60 text-center">
+                <motion.div 
+                  className="text-7xl mb-6"
+                  animate={{ y: [0, -15, 0] }}
+                  transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
+                >
+                  🛒
+                </motion.div>
+                <h2 className="text-3xl font-bold text-slate-900 mb-3">
+                  Your cart is empty
+                </h2>
+                <p className="text-slate-600 mb-8 text-lg">
+                  Looks like you haven't added anything yet
+                </p>
                 <Link 
                   to="/" 
                   className="inline-block bg-slate-900 text-white px-8 py-3 rounded-xl hover:bg-slate-800 font-medium transition-all duration-200 shadow-sm hover:shadow-md"
                 >
                   Start Shopping
                 </Link>
-              </motion.div>
-            </div>
-          </motion.div>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </motion.div>
     );
@@ -79,14 +75,17 @@ const Cart = () => {
   return (
     <motion.div {...pageTransition}>
       <div className="container mx-auto px-4 py-8">
-        <h1 className="text-4xl font-bold text-slate-900 mb-8">Shopping Cart</h1>
+        <h1 className="text-4xl font-bold text-slate-900 mb-6">Shopping Cart</h1>
         
+        {/* Real-time Collaborative Group Cart Banner */}
+        <GroupCartBanner />
+
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2 space-y-4">
             <AnimatePresence>
               {cart.map(item => (
                 <motion.div
-                  key={item.id}
+                  key={item.id || item._id}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -20, height: 0 }}
